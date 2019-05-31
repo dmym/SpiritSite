@@ -1,0 +1,44 @@
+﻿@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+@using Translate = Sitecore.Globalization.Translate
+
+@model RenderingModel
+
+<div class="container">
+
+    <div class="program-title">
+        @Html.Sitecore().Field("ContentTitle")
+    </div>
+
+    <div class="program-tagline">
+        @Html.Sitecore().Field("ContentTagline")
+    </div>
+
+    @Html.Sitecore().Field("BannerImage")
+
+    <div class="program-outline">@Model.Item.Fields["ProgramOverview"].InnerItem.DisplayName</div>
+    @Html.Sitecore().Field("ProgramOverview")
+
+    <div class="program-outline">@Model.Item.Template.GetSection("ProgramSpecification").DisplayName</div>
+
+    @{
+        var specifications = new[] {
+            "ProgramGroupSize",
+            "ProgramTime",
+            "ProgramSpaceRequirement",
+            "ProgramIdealFor",
+            "ProgramIdealFor",
+            "ProgramTailoring"
+        };
+    }
+
+    @foreach (string fieldName in specifications)
+    {
+        if (Html.Sitecore().HasValue(fieldName))
+        {
+            <div class="program-spec-title">@Model.Item.Fields[fieldName].InnerItem.DisplayName</div>
+            @Html.Sitecore().Field(fieldName)
+        }
+    }
+
+</div>

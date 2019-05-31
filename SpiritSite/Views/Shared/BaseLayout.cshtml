@@ -1,0 +1,29 @@
+﻿@using Sitecore.Mvc
+@using Sitecore.Mvc.Analytics.Extensions
+@using Sitecore.ExperienceForms.Mvc.Html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@Html.Sitecore().Field("MetaTitle", new { DisableWebEdit = true })</title>
+    @Html.Sitecore().VisitorIdentification()
+
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/sticky-footer-navbar.css" rel="stylesheet" />
+</head>
+<body>
+
+    @Html.Sitecore().Placeholder("headerContent")
+
+    <div class="container ">
+        @Html.Sitecore().Placeholder("mainContent")
+    </div>
+
+    @Html.Sitecore().Rendering("/sitecore/layout/Renderings/SpiritSite/Base/Footer")
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    @Html.RenderFormStyles()
+    @Html.RenderFormScripts()
+</body>
+</html>

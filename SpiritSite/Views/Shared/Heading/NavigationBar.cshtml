@@ -1,0 +1,38 @@
+﻿@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+@using Sitecore.Links
+@using Sitecore.Data.Managers
+
+@model SpiritSite.Models.NavigationBarList
+@{
+    var imageItem = Sitecore.Context.Database.GetItem("{F9FE58E9-F3A1-4354-8188-6DE84B2FBD44}");
+    string imagePath = Sitecore.Resources.Media.MediaManager.GetMediaUrl(imageItem);
+}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <a class="navbar-brand" href="/">
+        <img src="@imagePath" alt="Logo" width="70" />
+        Spirit Site
+    </a>
+
+    <div class="navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            @foreach (var item in Model.NavigationItems)
+            {
+                <li class="nav-item dropdown @(item.IsActive ? "active" : "" ) ">
+                    <a class="nav-link" href="@item.Url">@item.Title</a>
+                </li>
+            }
+        </ul>
+        <div class="navbar-text">
+            @foreach (var lang in LanguageManager.GetLanguages(Sitecore.Context.Database))
+            {
+                <div>
+                    <a href="@LinkManager.GetItemUrl(Sitecore.Context.Item, new UrlOptions { Language = lang })">@lang.CultureInfo.DisplayName</a>
+                </div>
+            }
+        </div>
+    </div>
+
+</nav>

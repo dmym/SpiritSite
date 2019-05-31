@@ -1,0 +1,17 @@
+﻿@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+@model RenderingModel
+@{
+
+}
+<div>
+    <h1> @Html.Sitecore().Field("ContentTitle")</h1>
+    <h2> @Html.Sitecore().Field("ContentTagline")</h2>
+
+    <div>
+        @Html.Sitecore().Field("BannerImage", new { mw = 1100 })
+    </div>
+    <div class="rich-block">
+        @Html.Sitecore().Field("ContentBody")
+    </div>
+</div>

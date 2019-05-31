@@ -1,0 +1,14 @@
+﻿@using Sitecore.Mvc
+@using Sitecore.Mvc.Analytics.Extensions
+@using Sitecore.Mvc.Presentation
+@model RenderingModel
+@{
+    Layout = null;
+}
+
+<h1> @Html.Sitecore().Field("ContentTitle")</h1>
+<h2> @Html.Sitecore().Field("ContentTagline")</h2>
+
+<div>
+    @Html.Sitecore().Field("ContentBody")
+</div>

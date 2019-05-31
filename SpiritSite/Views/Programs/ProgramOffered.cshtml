@@ -1,0 +1,28 @@
+﻿@using Sitecore.Mvc
+@using Sitecore.Mvc.Analytics.Extensions
+@using Sitecore.Mvc.Presentation
+@using Sitecore.Data.Items;
+
+@model SpiritSite.Models.RecursiveNavigationList
+
+@helper RenderNavItem(SpiritSite.Models.NavigationItem baseItem)
+{
+    <ul>
+        @foreach (SpiritSite.Models.NavigationItem item in baseItem.Children)
+        {
+            <li>
+                <a href="@item.Url">@item.Title</a>
+            </li>
+            if (item.HasChildren)
+            {
+                @RenderNavItem(item)
+            }
+        }
+    </ul>
+}
+
+<h1> @Html.Sitecore().Field("ContentTitle")</h1>
+<h2> @Html.Sitecore().Field("ContentTagline")</h2>
+
+@RenderNavItem(Model.BaseItem)
+

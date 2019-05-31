@@ -1,0 +1,21 @@
+﻿@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+@model SpiritSite.Models.RecursiveNavigationList
+@{
+
+}
+
+<h1> @Html.Sitecore().Field("ContentTitle")</h1>
+<h2> @Html.Sitecore().Field("ContentTagline")</h2>
+
+<ul class="list-unstyled">
+    @foreach (SpiritSite.Models.NavigationItem item in Model.BaseItem.Children)
+    {
+        <li>
+            <a href="@item.Url" class="program-thumb">
+                @Html.Sitecore().Field("BannerImage", item.InnerItem, new { mw = 400, @class = "img-thumbnail" })
+                @Html.Sitecore().Field("ContentTitle", item.InnerItem)
+            </a>
+        </li>
+    }
+</ul>
