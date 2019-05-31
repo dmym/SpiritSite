@@ -507,6 +507,7 @@
     <Compile Include="Models\Rendering\BreadcrumbsList.cs" />
     <Compile Include="Models\Rendering\RecursiveNavigationList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubmitActions\SubmitQuotation.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
