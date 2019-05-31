@@ -13,3 +13,5 @@ SpiritSite/[Oo]bj/
 packages/*
 publish/
 *.Publish.xml
+
+.vs/
