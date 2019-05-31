@@ -1,0 +1,15 @@
+# User-specific files
+*.suo
+*.user
+*.sln.docstates
+
+# Build results
+SpiritSite/[Dd]ebug/
+SpiritSite/[Rr]elease/
+SpiritSite/x64/
+SpiritSite/[Bb]in/
+SpiritSite/[Oo]bj/
+
+packages/*
+publish/
+*.Publish.xml
