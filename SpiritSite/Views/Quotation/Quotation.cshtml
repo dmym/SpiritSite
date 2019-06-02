@@ -1,14 +1,40 @@
 ﻿@using Sitecore.Mvc
-@using Sitecore.Mvc.Analytics.Extensions
+@using Sitecore.Mvc.Configuration
 @using Sitecore.Mvc.Presentation
-@model RenderingModel
-@{
-    Layout = null;
-}
+@using Sitecore.Data.Items
+
+@model SpiritSite.Models.Quotation
 
 <h1> @Html.Sitecore().Field("ContentTitle")</h1>
 <h2> @Html.Sitecore().Field("ContentTagline")</h2>
 
-<div>
-    @Html.Sitecore().Field("ContentBody")
-</div>
+@foreach (Item item in Sitecore.Context.Item.GetChildren())
+{
+    <div class="card quot-card">
+        <div class="card-header">
+            @Html.Sitecore().Field("UserName", item)
+        </div>
+        <div class="card-body">
+            @Html.Sitecore().Field("Text", item)
+        </div>
+    </div>
+}
+
+@using (Html.BeginRouteForm(MvcSettings.SitecoreRouteName, FormMethod.Post))
+{
+    @Html.Sitecore().FormHandler()
+
+    @Html.ValidationSummary("Errors occurred!", new { @class = "error-message" })
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.UserName)
+        @Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Text)
+        @Html.TextAreaFor(x => x.Text, new { @class = "form-control" })
+    </div>
+
+    <input type="submit" class="btn btn-dark" />
+}

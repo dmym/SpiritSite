@@ -73,3 +73,11 @@ body {
 a.program-thumb:hover {
     text-decoration: none;
 }
+
+.quot-card {
+    margin: 10px 0 10px 0;
+}
+
+.error-message {
+    color: #ff0000;
+}
